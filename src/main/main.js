@@ -13,12 +13,9 @@ function createWindow() {
     title: "HnK - Calendario de Exámenes",
   });
 
-  const isDev = process.env.NODE_ENV === 'development';
-  if (isDev) {
-    win.loadURL('http://localhost:5173');
-  } else {
-    win.loadFile(path.join(__dirname, '../../dist/index.html'));
-  }
+  // Forzamos loadURL en desarrollo para evitar el error "index not found"
+  win.loadURL('http://localhost:5173');
+}
 }
 
 // IPC Handlers for Database Operations
