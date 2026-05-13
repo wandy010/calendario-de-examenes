@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-const { ipcRenderer } = require('electron');
+const ipcRenderer = (window.require) ? window.require('electron').ipcRenderer : null;
 import ExamModal from '../components/ExamModal';
 import '../styles/index.css';
 
@@ -18,11 +18,19 @@ const App = () => {
   }, [month, year]);
 
   const loadExams = async () => {
+    if (!ipcRenderer) {
+      console.error('ipcRenderer not found');
+      return;
+    }
     const data = await ipcRenderer.invoke('get-exams', { month: month + 1, year });
     setExams(data);
   };
 
   const handleSaveExam = async (exam) => {
+    if (!ipcRenderer) {
+      console.error('ipcRenderer not found');
+      return;
+    }
     await ipcRenderer.invoke('save-exam', exam);
     loadExams();
   };
