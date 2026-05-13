@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-const { ipcRenderer } = window.require('electron');
+import { createRoot } from 'react-dom/client';
+const { ipcRenderer } = require('electron');
 import ExamModal from '../components/ExamModal';
 import '../styles/index.css';
 
@@ -122,3 +123,6 @@ const App = () => {
 };
 
 export default App;
+
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
