@@ -1,12 +1,13 @@
 const sql = require('mssql');
 
 const config = {
-  user: 'sa', // Change to actual user
-  password: 'YourStrongPassword123', // Change to actual password
-  server: 'localhost',
+  // Al usar Autenticación de Windows, no ponemos 'user' ni 'password'
+  server: 'localhost\\SQLEXPRESS', 
   database: 'CalendarioExamenes',
+  driver: 'msnodesqlv8',
   options: {
-    encrypt: false, // Use false for local SQL Server
+    trustedConnection: true,
+    encrypt: false, 
     trustServerCertificate: true,
   },
 };
@@ -23,7 +24,7 @@ async function executeQuery(query, params = []) {
     const result = await request.query(query);
     return result.recordset;
   } catch (err) {
-    console.error('SQL Error:', err);
+    console.error('SQL Error (,,>﹏<,,):', err);
     throw err;
   }
 }
