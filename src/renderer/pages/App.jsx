@@ -53,8 +53,12 @@ const App = () => {
   }
 
   const getBackground = () => {
-    // Path assumes images are named 0.jpg, 1.jpg ... 11.jpg in assets/hnk-photos
-    return `/src/renderer/assets/hnk-photos/${month}.jpg`;
+    const extensions = [
+      'jpg', 'jpg', 'jpg', 'jpg', 'jpg', 'jpg', 
+      'jpg', 'jpg', 'jpg', 'png', 'png', 'jpg'
+    ];
+    const ext = extensions[month] || 'jpg';
+    return `/src/renderer/assets/hnk-photos/${month}.${ext}`;
   };
 
   return (

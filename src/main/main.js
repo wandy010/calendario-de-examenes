@@ -16,7 +16,6 @@ function createWindow() {
   // Forzamos loadURL en desarrollo para evitar el error "index not found"
   win.loadURL('http://localhost:5173');
 }
-}
 
 // IPC Handlers for Database Operations
 ipcMain.handle('get-exams', async (event, { month, year }) => {
